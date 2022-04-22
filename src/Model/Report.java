@@ -6,9 +6,6 @@ public class Report {
     private String courseName;
     private int totalCourse;
 
-    public Report() {
-    }
-
     public Report(String studentName, String courseName, int totalCourse) {
         this.studentName = studentName;
         this.courseName = courseName;

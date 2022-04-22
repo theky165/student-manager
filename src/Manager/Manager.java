@@ -43,7 +43,6 @@ public class Manager {
             //check student exist or not
             if (Validation.checkStudentExist(ls, id, name, semester, course)) {
                 ls.add(new Student(id, name, semester, course));
-                count++;
                 System.out.println("Add student success.");
                 return;
             }
@@ -99,7 +98,6 @@ public class Manager {
         //check list empty
         if (listStudentFindByName.isEmpty()) {
             System.err.println("Not found student.");
-            return;
         } else {
             Student student = getStudentByListFound(listStudentFindByName);
             System.out.print("Do you want to update (U) or delete (D) student: ");
@@ -125,12 +123,9 @@ public class Manager {
                     student.setCourseName(course);
                     System.err.println("Update success.");
                 }
-                return;
             } else {
                 ls.remove(student);
-                count--;
                 System.err.println("Delete success.");
-                return;
             }
         }
     }
@@ -170,30 +165,9 @@ public class Manager {
             System.err.println("List empty.");
             return;
         }
-        ArrayList<Report> lr = new ArrayList<>();
-        int size = ls.size();
-        for (int i = 0; i < size; i++) {
-            int total = 0;
-            for (Student student : ls) {
-                String id = student.getId();
-                String courseName = student.getCourseName();
-                String studentName = student.getStudentName();
-                for (Student studentCountTotal : ls) {
-                    if (id.equalsIgnoreCase(studentCountTotal.getId())
-                            && courseName.equalsIgnoreCase(studentCountTotal.getCourseName())) {
-                        total++;
-                    }
-                }
-                if (Validation.checkReportExist(lr, studentName,
-                        courseName, total)) {
-                    lr.add(new Report(student.getStudentName(), studentName, total));
-                }
-            }
-        }
-        //print report
-        for (int i = 0; i < lr.size(); i++) {
-            System.out.printf("%-15s|%-10s|%-5d\n", lr.get(i).getStudentName(),
-                    lr.get(i).getCourseName(), lr.get(i).getTotalCourse());
+
+        for (Student s : ls) {
+            s.print();
         }
     }
 }

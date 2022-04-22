@@ -96,7 +96,6 @@ public class Validation {
     //check student exist
     public static boolean checkStudentExist(ArrayList<Student> ls, String id,
                                             String studentName, String semester, String courseName) {
-        int size = ls.size();
         for (Student student : ls) {
             if (id.equalsIgnoreCase(student.getId())
                     && studentName.equalsIgnoreCase(student.getStudentName())
@@ -136,11 +135,12 @@ public class Validation {
     public static boolean checkChangeInfomation(Student student, String id,
                                                 String name, String semester, String course) {
         if (id.equalsIgnoreCase(student.getId())
-                && name.equalsIgnoreCase(student.getStudentName())
-                && semester.equalsIgnoreCase(student.getSemester())
-                && course.equalsIgnoreCase(student.getCourseName())) {
-            return false;
+             && name.equalsIgnoreCase(student.getStudentName())
+                    && semester.equalsIgnoreCase(student.getSemester())
+                    && course.equalsIgnoreCase(student.getCourseName())) {
+                return false;
+            } else {
+            return true;
         }
-        return true;
     }
 }
